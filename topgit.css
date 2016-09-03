@@ -31,10 +31,6 @@
     margin-bottom: 50px;
 }
 
-#lastAPICallDuration:hover::after {
-    content: ' seconds';
-}
-
 .topgit nav ul .stats {
     padding: 5px;
     margin: 5px;
@@ -69,8 +65,17 @@ div.col-md-4.repo::before {
 }
 
 .repo .description {
-    height: 3em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.repo .detail.stat {
+    font-size: 16px;
+    padding: 5px;
+    display: inline-block;
+}
+
+.repo .detail.stat span {
+    margin: 3px;
 }

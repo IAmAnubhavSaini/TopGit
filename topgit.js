@@ -30,7 +30,7 @@ $(function () {
         itemsDiv.html('');
         function createItem(item) {
             function createAnchor(href, name) {
-                return $('<a href="' + href + '">' + name + '</a>');
+                return $('<a href="' + href + '" target="_blank">' + name + '</a>');
             }
             function createHeader(item) {
                 var headerContainer = $('<h4></h4>');
@@ -38,16 +38,87 @@ $(function () {
                 return headerContainer;
             }
             function createDescription(desc) {
-                var descriptionContainer = $('<div class="description"></div>');
+                var descriptionContainer = $('<div class="detail description"></div>');
                 descriptionContainer.html(desc);
                 return descriptionContainer
+            }
+            function createCreatedXDaysAgo(date) {
+                var then = moment(date);
+                var days = moment().diff(then, 'days');
+                var container = $('<span class="detail stat created" title="started ' + days + ' days ago" data-toggle="tooltip" data-placement="top"></span>');
+                var image = $('<span class="glyphicon glyphicon-triangle-right"></span>');
+                container.append(image);
+                container.append(days);
+                return container;
+            }
+            function crateStars(starCount) {
+                var container = $('<span class="detail stat starCount" title="Number of stars" data-toggle="tooltip" data-placement="top"></span>');
+                var image = $('<span class="glyphicon glyphicon-star"></span>');
+                container.append(image);
+                container.append('<span>' + starCount + '</span>');
+                return container;
+            }
+            function crateWatchers(watchersCount) {
+                var container = $('<span class="detail stat watchersCount" title="Number of watchers" data-toggle="tooltip" data-placement="top"></span>');
+                var image = $('<span class="glyphicon glyphicon-eye-open"></span>');
+                container.append(image);
+                container.append('<span>' + watchersCount + '</span>');
+                return container;
+            }
+            function createDownloadSize(size) {
+                var container = $('<span class="detail stat downloadSize" title="Size of repo in KiB" data-toggle="tooltip" data-placement="top"></span>');
+                var image = $('<span class="glyphicon glyphicon-floppy-save"></span>');
+                container.append(image);
+                container.append('<span>' + size + '</span>');
+                return container;
+            }
+            function createUpdatedXDaysAgo(date) {
+                var then = moment(date);
+                var title = 'days';
+                var time = moment().diff(then, title);
+                if(time < 1) {
+                    title = 'hours';
+                    time = moment().diff(then, title);
+                    if(time < 1) {
+                        title = 'minutes';
+                        time = moment().diff(then, title);
+                            if(time < 1) {
+                            title = 'seconds';
+                            time = moment().diff(then, title);
+                        }
+                    }
+                }
+                title = time === 1 ? title.substr(0, title.length-1) : title;
+                var container = $('<span class="detail stat created" title="updated ' + time + ' ' + title + ' ago" data-toggle="tooltip" data-placement="top"></span>');
+                var image = $('<span class="glyphicon glyphicon-edit"></span>');
+                container.append(image);
+                container.append(time);
+                return container;
+            }
+            function createOpenIssues(count) {
+                var container = $('<span class="detail stat openIssues" title="Open issues" data-toggle="tooltip" data-placement="top"></span>');
+                var image = $('<span class="glyphicon glyphicon-fire"></span>');
+                container.append(image);
+                container.append('<span>' + count + '</span>');
+                return container;
+            }
+            function createHomepage(homepageURL) {
+                var container = $('<span class="detail stat homepage" title="Homepage" data-toggle="tooltip" data-placement="top"></span>');
+                container.append('<span><a href="' + homepageURL + '" target="_blank"><span class="glyphicon glyphicon-home"></span></a></span>');
+                return container;
             }
             console.log('createItem', item);
             var itemContainer = $('<div class="col-md-4 repo"></div>');
             var header = createHeader(item);
-            itemContainer.html(header);
+            itemContainer.append(header);
             itemContainer.append(createDescription(item.description));
-            return itemContainer;    
+            itemContainer.append(createCreatedXDaysAgo(item.created_at));
+            itemContainer.append(crateStars(item.stargazers_count));
+            itemContainer.append(crateWatchers(item.watchers_count));
+            itemContainer.append(createDownloadSize(item.size));
+            itemContainer.append(createUpdatedXDaysAgo(item.updated_at));
+            itemContainer.append(createHomepage(item.homepage));
+            return itemContainer;
         }
         function creatItemsForPage(items) {
             console.log('creatItemsForPage', items);
@@ -66,6 +137,7 @@ $(function () {
                 itemsDiv.html(page);
             }
         });
+        $('[data-toggle="tooltip"]').tooltip();
     };
     function postSuccess_stats(totalCount, minStars, languageName) {
         totalResultsDiv.addClass('displayB');
