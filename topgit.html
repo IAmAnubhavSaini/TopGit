@@ -4,10 +4,12 @@
         <meta charset='utf-8'>
         <meta content='IE=Edge' http-equiv='X-UA-Compatible'>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <title>TopGit</title>
+        <title>Top Git</title>
         <link rel="stylesheet" href="bootstrap.min.css" />
         <link rel="stylesheet" href="topgit.css" />
         <link rel="stylesheet" href="pagination.css" />
+        <link rel="stylesheet" href="jquery-ui.min.css" />
+        <link rel="stylesheet" href="topgit.css" />
     </head>
     <body class="topgit">
         <div class="container">
@@ -17,11 +19,11 @@
                         <li class="stats">
                             <span id="lastAPICallAt" title="Date/Time last API call was made at" data-toggle="tooltip" data-placement="bottom"></span>
                             <span id="lastAPICallDuration" title="seconds it took API call go and fetch data" data-toggle="tooltip" data-placement="bottom"></span>
-                            <span id="APICallsThisMinute" title="Number of API calls this minute" data-toggle="tooltip" data-placement="bottom"></span>
+                            <span id="APICallsThisMinute" title="Number of API calls left this minute" data-toggle="tooltip" data-placement="bottom"></span>
                         </li>
                     </ul>
                 </nav>
-                <h3 class="text-muted">TopGit</h3>
+                <h3 class="text-muted"><a href="./topgit.html">TopGit</a></h3>
             </div>
             <div class="row row-topgit">
                 <section id="input-form" class="col-lg-12">
@@ -54,6 +56,7 @@
         <div id="scripts">
         <script src="moment.min.js"></script>
         <script src="jquery.min.js"></script>
+        <script src="jquery-ui.min.js"></script>
         <script src="pagination.min.js"></script>
         <script src="bootstrap.min.js"></script>
         <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->

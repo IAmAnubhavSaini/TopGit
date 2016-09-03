@@ -84,3 +84,13 @@ div.col-md-4.repo::before {
 #sortByStars {
     font-size: 24px;
 }
+
+.ui-menu {
+    background-color: rgba(132, 132, 132, .12);
+    color: #333;
+    font-weight: bold;
+}
+.ui-menu .ui-menu-item {
+    padding: 2px;
+    border-bottom: thin solid #999;
+}
