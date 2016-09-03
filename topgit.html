@@ -7,6 +7,7 @@
         <title>TopGit</title>
         <link rel="stylesheet" href="bootstrap.min.css" />
         <link rel="stylesheet" href="topgit.css" />
+        <link rel="stylesheet" href="pagination.css" />
     </head>
     <body class="topgit">
         <div class="container">
@@ -23,12 +24,13 @@
                 <h3 class="text-muted">TopGit</h3>
             </div>
             <div class="row row-topgit">
-                <section id="input-form" class="col-md-6">
+                <section id="input-form" class="col-lg-12">
                     <form class="form-inline">
                         <div class="form-group">
                             <input type="number" min="1" max="10000" id="stars" placeholder="stars" title="minimum number of stars" tabindex="1" autofocus="autofocus">
                             <input type="text" id="language" placeholder="language" title="project language to search for" tabindex="2">
                             <button type="button" id="search" class="btn btn-success" tabindex="3">Search</button>
+                            <input type="number" id="maximumRepoCountToFetch" placeholder="max repo count" title="maximum repo to fetch from GitHub" tabindex="4" value="100">
                         </div>
                     </form>
                 </section>
@@ -49,6 +51,7 @@
         <div id="scripts">
         <script src="moment.min.js"></script>
         <script src="jquery.min.js"></script>
+        <script src="pagination.min.js"></script>
         <script src="bootstrap.min.js"></script>
         <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
         <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->

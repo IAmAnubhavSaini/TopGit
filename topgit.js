@@ -3,12 +3,15 @@ $(function () {
     var itemsDiv = $('#items');
     var languageInput = $('#language');
     var minStarsInput = $('#stars');
+    var maximumRepoCountToFetchInput = $('#maximumRepoCountToFetch');
     var totalResultsDiv = $('#totalResults');
     var repoCountSpan = $('#repoCount');
     var starCountSpan = $('#starCount');
     var languageNameSpan = $('#languageName');
     var lastAPICallDurationSpan = $('span#lastAPICallDuration');
     var lastAPICallAtSpan = $('span#lastAPICallAt');
+    var maxRepoReturnedByGitHubPerPage = 100;
+
 
     function sessionSaveName(name) {
         var savedNames = sessionStorage.getItem('saved-names') || '';
@@ -23,16 +26,45 @@ $(function () {
     function sessionRetrieve(name, value) {
         sessionStorage.getItem(name);
     }
-    function createItems(items) {
+    function createItems(allItems) {
         itemsDiv.html('');
-        function createItem() {
-            return $('<div class="col-md-4 repo"></div>');
+        function createItem(item) {
+            function createAnchor(href, name) {
+                return $('<a href="' + href + '">' + name + '</a>');
+            }
+            function createHeader(item) {
+                var headerContainer = $('<h4></h4>');
+                headerContainer.append(createAnchor(item.html_url, item.full_name));
+                return headerContainer;
+            }
+            function createDescription(desc) {
+                var descriptionContainer = $('<div class="description"></div>');
+                descriptionContainer.html(desc);
+                return descriptionContainer
+            }
+            console.log('createItem', item);
+            var itemContainer = $('<div class="col-md-4 repo"></div>');
+            var header = createHeader(item);
+            itemContainer.html(header);
+            itemContainer.append(createDescription(item.description));
+            return itemContainer;    
         }
-        items.forEach(function (item) {
-            console.log(item);
-            var curr = createItem();
-            curr.html(item.full_name);
-            itemsDiv.append(curr);
+        function creatItemsForPage(items) {
+            console.log('creatItemsForPage', items);
+            var pageContainer = $('<div></div>');
+            items.forEach(function(item) {
+                createItem(item).appendTo(pageContainer);
+            });
+            return pageContainer;
+        }
+        dataDiv.pagination({
+            dataSource: allItems,
+            pageSize: maxRepoReturnedByGitHubPerPage,
+            callback: function(data, pagination) {
+                var page = creatItemsForPage(data);
+                console.log('page', page);
+                itemsDiv.html(page);
+            }
         });
     };
     function postSuccess_stats(totalCount, minStars, languageName) {
@@ -47,11 +79,16 @@ $(function () {
         dataDiv.removeClass('displayB');
         var language = languageInput.val();
         var minStars = minStarsInput.val();
+        var maximumRepoCountToFetch = maximumRepoCountToFetchInput.val();
+        var numberOfPages = Math.floor(maximumRepoCountToFetch / maxRepoReturnedByGitHubPerPage);
         var URI = 'https://api.github.com/search/repositories?q=stars:>='
             + minStars
             + '+language:'
             + encodeURIComponent(language)
-            + '&sort=stars&order=desc&page=1&per_page=40';
+            + '&sort=stars&order=desc&page='
+            + numberOfPages
+            + '&per_page='
+            + maximumRepoCountToFetch;
 
         $('html, body').css('cursor', 'wait');
         var lastAPICallTime = moment();

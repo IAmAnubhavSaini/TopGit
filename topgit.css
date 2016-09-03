@@ -13,6 +13,11 @@
     border-bottom: thin solid #20DA30;
 }
 
+.topgit #input-form input#maximumRepoCountToFetch {
+    color: #bbb;
+    border-bottom: thin solid #999999;
+}
+
 .topgit #totalResults, .topgit #data {
     display: none;
 }
@@ -23,6 +28,7 @@
 
 .topgit #items .repo {
     min-height: 100px;
+    margin-bottom: 50px;
 }
 
 #lastAPICallDuration:hover::after {
@@ -52,12 +58,19 @@ div.col-md-4.repo {
 }
 div.col-md-4.repo::before {
     content: counter(repo);
-    padding: 10px;
-    margin: 5px;
+    padding: 5px;
+    margin: 1px;
     position: relative;
-    top: -10px;
-    left: -10px;
+    left: -5px;
+    font-size: 10px;
     border-radius: 10%;
     background-color: #333;
-    color: #ddd;
+    color: #fff;
+}
+
+.repo .description {
+    height: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
