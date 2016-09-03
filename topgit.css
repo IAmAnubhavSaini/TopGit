@@ -51,13 +51,14 @@
 
 div.col-md-4.repo {
     counter-increment: repo;
+    border-left: thin solid #333;
 }
 div.col-md-4.repo::before {
     content: counter(repo);
     padding: 5px;
     margin: 1px;
     position: relative;
-    left: -5px;
+    left: -15px;
     font-size: 10px;
     border-radius: 10%;
     background-color: #333;
