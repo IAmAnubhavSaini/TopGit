@@ -1,0 +1,63 @@
+.topgit .row, .topgit .row .col-md-12 {
+    margin: 15px 0 5px;
+}
+.topgit .row .col-md-12#data {
+    border-top: thin solid rgba(32, 32, 32, .1);
+}
+
+.topgit #input-form input { 
+    width: 30%;
+    padding: 2%;
+    margin: 2%;
+    border: none;
+    border-bottom: thin solid #20DA30;
+}
+
+.topgit #totalResults, .topgit #data {
+    display: none;
+}
+
+.displayB { display: block !important; }
+.displayI { display: inline !important; }
+.displayIB { display: inline-block !important; }
+
+.topgit #items .repo {
+    min-height: 100px;
+}
+
+#lastAPICallDuration:hover::after {
+    content: ' seconds';
+}
+
+.topgit nav ul .stats {
+    padding: 5px;
+    margin: 5px;
+}
+
+.topgit nav ul .stats span {
+    padding: 5px;
+    margin: 5px;
+}
+
+.topgit nav ul .stats span:hover {
+    border: thin solid #ddd;
+}
+
+#items {
+    counter-reset: repo;
+}
+
+div.col-md-4.repo {
+    counter-increment: repo;
+}
+div.col-md-4.repo::before {
+    content: counter(repo);
+    padding: 10px;
+    margin: 5px;
+    position: relative;
+    top: -10px;
+    left: -10px;
+    border-radius: 10%;
+    background-color: #333;
+    color: #ddd;
+}
