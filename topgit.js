@@ -1,4 +1,5 @@
 $(function () {
+    var sortByStarsContainer = $('#sortByStars');
     var dataDiv = $('#data');
     var itemsDiv = $('#items');
     var languageInput = $('#language');
@@ -11,7 +12,24 @@ $(function () {
     var lastAPICallDurationSpan = $('span#lastAPICallDuration');
     var lastAPICallAtSpan = $('span#lastAPICallAt');
     var maxRepoReturnedByGitHubPerPage = 100;
+    var sortByStarsValue;
 
+    (function () {
+        var descClass = 'glyphicon-sort-by-order-alt';
+        var ascClass = 'glyphicon-sort-by-order';
+        var enabledClass = descClass;
+        var disabledClass = ascClass;
+        sortByStarsValue = 'desc';
+        sortByStarsContainer.children().filter('.order').addClass(enabledClass);
+        sortByStarsContainer.children().filter('.order').on('click', function () {
+            sortByStarsValue = sortByStarsValue === 'desc' ? 'asc' : 'desc';
+            $(this).toggleClass(enabledClass).toggleClass(disabledClass);
+            var tmp = disabledClass;
+            disabledClass = enabledClass;
+            enabledClass = tmp;
+        });
+
+    })();
 
     function sessionSaveName(name) {
         var savedNames = sessionStorage.getItem('saved-names') || '';
@@ -157,7 +175,9 @@ $(function () {
             + minStars
             + '+language:'
             + encodeURIComponent(language)
-            + '&sort=stars&order=desc&page='
+            + '&sort=stars&order='
+            + sortByStarsValue
+            + '&page='
             + numberOfPages
             + '&per_page='
             + maximumRepoCountToFetch;

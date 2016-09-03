@@ -28,6 +28,9 @@
                     <form class="form-inline">
                         <div class="form-group">
                             <input type="number" min="1" max="10000" id="stars" placeholder="stars" title="minimum number of stars" tabindex="1" autofocus="autofocus">
+                            <span id="sortByStars" title="Sort descending/ascending by stars" data-toggle="tooltip" data-placement="top">
+                                <span class="glyphicon order"></span>
+                            </span>
                             <input type="text" id="language" placeholder="language" title="project language to search for" tabindex="2">
                             <button type="button" id="search" class="btn btn-success" tabindex="3">Search</button>
                             <input type="number" id="maximumRepoCountToFetch" placeholder="max repo count" title="maximum repo to fetch from GitHub" tabindex="4" value="100">
