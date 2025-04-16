@@ -1,58 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <meta content='IE=Edge' http-equiv='X-UA-Compatible'>
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <title>Top Git</title>
-        <link rel="stylesheet" href="bootstrap.min.css" />
-        <link rel="stylesheet" href="pagination.css" />
-        <link rel="stylesheet" href="jquery-ui.min.css" />
-        <link rel="stylesheet" href="topgit.css" />
-    </head>
-    <body class="topgit">
-        <div class="container">
-            <div class="header clearfix">
-                <nav>
-                    <ul class="nav nav-pills pull-right">
-                        <li class="stats">
-                            <span id="lastAPICallAt" title="Date/Time last API call was made at" data-toggle="tooltip" data-placement="bottom"></span>
-                            <span id="lastAPICallDuration" title="seconds it took API call go and fetch data" data-toggle="tooltip" data-placement="bottom"></span>
-                            <span id="APICallsThisMinute" title="Number of API calls left this minute" data-toggle="tooltip" data-placement="bottom"></span>
-                        </li>
-                    </ul>
-                </nav>
-                <h3 class="text-muted"><a href="./topgit.html">TopGit</a></h3>
+
+<head>
+    <meta charset='utf-8'>
+    <meta content='IE=Edge' http-equiv='X-UA-Compatible'>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>Top Git</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="pagination.css" />
+    <link rel="stylesheet" href="jquery-ui.min.css" />
+    <link rel="stylesheet" href="topgit.css" />
+</head>
+
+<body class="topgit">
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li class="stats">
+                        <span id="lastAPICallAt" title="Date/Time last API call was made at" data-toggle="tooltip"
+                            data-placement="bottom"></span>
+                        <span id="lastAPICallDuration" title="seconds it took API call go and fetch data"
+                            data-toggle="tooltip" data-placement="bottom"></span>
+                        <span id="APICallsThisMinute" title="Number of API calls left this minute" data-toggle="tooltip"
+                            data-placement="bottom"></span>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted"><a href="./topgit.html">TopGit</a></h3>
+        </div>
+        <div class="row row-topgit">
+            <section id="input-form" class="col-lg-12">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="number" min="1" max="10000" id="stars" placeholder="stars"
+                            title="minimum number of stars" tabindex="1" autofocus="autofocus">
+                        <span id="sortByStars" title="Sort descending/ascending by stars" data-toggle="tooltip"
+                            data-placement="top">
+                            <span class="glyphicon order"></span>
+                        </span>
+                        <input type="text" id="language" placeholder="language" title="project language to search for"
+                            tabindex="2">
+                        <button type="button" id="search" class="btn btn-success" tabindex="3">Search</button>
+                        <input type="number" id="maximumRepoCountToFetch" placeholder="max repo count"
+                            title="maximum repo to fetch from GitHub" tabindex="4" value="100">
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="totalResults">
+                We found <span id="repoCount" title="number of repo with stars"></span> <span id="languageName"></span>
+                repositories with minimum <span id="starCount" title="minimum stars for a repo"></span> stars.
             </div>
-            <div class="row row-topgit">
-                <section id="input-form" class="col-lg-12">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <input type="number" min="1" max="10000" id="stars" placeholder="stars" title="minimum number of stars" tabindex="1" autofocus="autofocus">
-                            <span id="sortByStars" title="Sort descending/ascending by stars" data-toggle="tooltip" data-placement="top">
-                                <span class="glyphicon order"></span>
-                            </span>
-                            <input type="text" id="language" placeholder="language" title="project language to search for" tabindex="2">
-                            <button type="button" id="search" class="btn btn-success" tabindex="3">Search</button>
-                            <input type="number" id="maximumRepoCountToFetch" placeholder="max repo count" title="maximum repo to fetch from GitHub" tabindex="4" value="100">
-                        </div>
-                    </form>
-                </section>
-            </div>
-            <div class="row">
-                <div class="col-md-12" id="totalResults">
-                    We found <span id="repoCount" title="number of repo with stars"></span> <span id="languageName"></span> repositories with minimum <span id="starCount" title="minimum stars for a repo"></span> stars.
+            <div id="data" class="col-md-12">
+                <div class="row">
                 </div>
-                <div id="data" class="col-md-12">
-                    <div class="row">
-                    </div>
-                    <div class="row" id="items">
-                    </div>
+                <div class="row" id="items">
                 </div>
             </div>
         </div>
-        
-        <div id="scripts">
+    </div>
+
+    <div id="scripts">
         <script src="moment.min.js"></script>
         <script src="jquery.min.js"></script>
         <script src="jquery-ui.min.js"></script>
@@ -62,6 +72,6 @@
         <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
         <script src="topgit.js"></script>
     </div>
-    </body>
+</body>
+
 </html>
-    

@@ -1,6 +1,0 @@
-
-
-todo:
-
-1. calls in a minute
-2. pagination

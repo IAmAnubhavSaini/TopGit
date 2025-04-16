@@ -1,11 +1,14 @@
-.topgit .row, .topgit .row .col-md-12 {
+.topgit .row,
+.topgit .row .col-md-12 {
     margin: 15px 0 5px;
 }
+
 .topgit .row .col-md-12#data {
     border-top: thin solid rgba(32, 32, 32, .1);
 }
 
-.topgit #input-form input, #sortByStars { 
+.topgit #input-form input,
+#sortByStars {
     width: 30%;
     padding: 2%;
     margin: 2%;
@@ -18,13 +21,22 @@
     border-bottom: thin solid #999999;
 }
 
-.topgit #totalResults, .topgit #data {
+.topgit #totalResults,
+.topgit #data {
     display: none;
 }
 
-.displayB { display: block !important; }
-.displayI { display: inline !important; }
-.displayIB { display: inline-block !important; }
+.displayB {
+    display: block !important;
+}
+
+.displayI {
+    display: inline !important;
+}
+
+.displayIB {
+    display: inline-block !important;
+}
 
 .topgit #items .repo {
     min-height: 100px;
@@ -53,6 +65,7 @@ div.col-md-4.repo {
     counter-increment: repo;
     border-left: thin solid #333;
 }
+
 div.col-md-4.repo::before {
     content: counter(repo);
     padding: 5px;
@@ -90,6 +103,7 @@ div.col-md-4.repo::before {
     color: #333;
     font-weight: bold;
 }
+
 .ui-menu .ui-menu-item {
     padding: 2px;
     border-bottom: thin solid #999;
